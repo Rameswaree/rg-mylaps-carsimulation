@@ -114,9 +114,7 @@ public class CarSimulationApp {
                         lapNumber + " starting at " + startTime + ". The duration of the lap is " +
                         duration + " seconds.");
             }
-
-
-
+            
         }catch (IOException e) {
             e.printStackTrace();
         }
