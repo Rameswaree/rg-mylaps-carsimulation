@@ -61,7 +61,7 @@ public class CarSimulationApp {
 
             //when file is empty
             if(map.size() == 0){
-                System.out.println("Empty file. Please provide a file with input!!");
+                System.out.println("Empty file. Please provide a file with valid data!!");
                 System.exit(0);
             }
 
