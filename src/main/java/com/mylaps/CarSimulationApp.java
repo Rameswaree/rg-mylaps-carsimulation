@@ -23,7 +23,7 @@ public class CarSimulationApp {
 
         LocalTime localTime = LocalTime.MAX;
 
-        LocalTime startTime = LocalTime.parse("11:59:00");
+        LocalTime startTime = LocalTime.parse("11:59:00"); //start time assumed for the race
 
         try(
                 BufferedReader reader =

@@ -6,11 +6,21 @@
 
     <groupId>groupId</groupId>
     <artifactId>rg-mylaps-carsimulation</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
+    <description>Car simulation software</description>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     
 </project>
