@@ -35,7 +35,7 @@ public class CarSimulationApp {
                                 new InputStreamReader(Objects.requireNonNull(CarSimulationApp.class.getClassLoader().getResourceAsStream("karttimes.csv")))
                         );
                 Stream<String> lines = reader.lines()
-           ){
+           ) {
 
             raceStream = lines.map(line -> {
                 String[] s = line.split(",");
@@ -60,14 +60,14 @@ public class CarSimulationApp {
             System.out.println(map);
 
             //when file is empty
-            if(map.size() == 0){
+            if (map.size() == 0) {
                 System.out.println("Empty file. Please provide a file with valid data!!");
                 System.exit(0);
             }
 
-            for(Map.Entry<Integer,List<LocalTime>> m:map.entrySet()){
+            for (Map.Entry<Integer, List<LocalTime>> m : map.entrySet()) {
                 LocalTime local = m.getValue().get(m.getValue().size() - 1);
-                if(local.isBefore(localTime)){
+                if (local.isBefore(localTime)) {
                     winner = m.getKey();
                     localTime = m.getValue().set(m.getValue().size() - 1, local);
                 }
@@ -80,22 +80,41 @@ public class CarSimulationApp {
             long duration = startTime.until(localTimesList.get(0), SECONDS);
             int lapNumber = 1;
 
-            for(int i = 0; i < localTimesList.size() - 1 ; i++){
-                if(localTimesList.get(i).until(localTimesList.get(i+1), SECONDS) < duration){
-                    duration = localTimesList.get(i).until(localTimesList.get(i+1), SECONDS);
+            for (int i = 0; i < localTimesList.size() - 1; i++) {
+                if (localTimesList.get(i).until(localTimesList.get(i + 1), SECONDS) < duration) {
+                    duration = localTimesList.get(i).until(localTimesList.get(i + 1), SECONDS);
                     lapNumber = i + 1;
                     startTime = localTimesList.get(i);
 
-                    if(duration < 0){
+                    if (duration < 0) {
                         System.out.println("Duration of lap number " + lapNumber + " is negative. Please check input!");
                         System.exit(0);
                     }
                 }
             }
 
-            System.out.println("Winner is kart number " + winner + ". The fastest lap number is " +
-                                lapNumber + " starting at " + startTime + " with a lap duration of " +
-                                duration + " seconds.");
+            if(duration%60 == 0 && duration != 60){
+                System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
+                        lapNumber + " starting at " + startTime + ". The duration of the lap is " +
+                        (duration/60) + " minutes.");
+            }else if (duration > 120) {
+                System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
+                        lapNumber + " starting at " + startTime + ". The duration of the lap is " +
+                        (duration / 60) + " minutes and " + (duration % 60) + " seconds.");
+            }else if(duration > 60 && duration < 120){
+                System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
+                        lapNumber + " starting at " + startTime + ". The duration of the lap is " +
+                        (duration / 60) + " minute and " + (duration % 60) + " seconds.");
+            }else if (duration == 60){
+                System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
+                        lapNumber + " starting at " + startTime + ". The duration of the lap is " +
+                        (duration/60) + " minute.");
+            }else{
+                System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
+                        lapNumber + " starting at " + startTime + ". The duration of the lap is " +
+                        duration + " seconds.");
+            }
+
 
 
         }catch (IOException e) {
