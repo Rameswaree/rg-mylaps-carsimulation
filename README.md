@@ -6,6 +6,4 @@ List of validations implemented:
  1. If the file is empty, then the program ends with the message "Empty file. Please provide a file with valid data!!".
  2. If the file is not present, it would throw NullPointerException.
  3. If the data was typed incorrectly, say, the lap has a value lesser than its previous lap in the "passingtime" column, then the program ends with the message "Duration of lap number {lapNumber} is negative. Please check input!" .
- 4. With proper data being fed, the message displayed will be "Winner is kart number {winner}. The fastest lap is lap number {lapNumber} starting at {startTime}. The duration of the lap is {duration} seconds." . Depending upon the time interval, the message also changes accordingly. After this, the program terminates. 
-
-Total time taken to complete this task is around 5 hours. 
+ 4. With proper data being fed, the message displayed will be "Winner is kart number {winner}. The fastest lap is lap number {lapNumber} starting at {startTime}. The duration of the lap is {duration} seconds." . Depending upon the time interval, the message also changes accordingly. After this, the program terminates.
