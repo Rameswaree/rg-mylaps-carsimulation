@@ -11,19 +11,23 @@ import java.util.stream.Stream;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 
+/**
+ * Main class for Racing Car Simulation
+ * @author rameswaree@gmail.com
+ */
 public class CarSimulationApp {
 
     public static void main(String[] args){
 
         Stream<Race> raceStream;
 
-        Map<Integer, List<LocalTime>> map = new LinkedHashMap<>();
+        Map<Integer, List<LocalTime>> map = new LinkedHashMap<>();//LinkedHashMap is used as it maintains the order of insertion
 
         int winner = 0;
 
         LocalTime localTime = LocalTime.MAX;
 
-        LocalTime startTime = LocalTime.parse("11:59:00"); //start time assumed for the race
+        LocalTime startTime = LocalTime.parse("11:59:00"); //start time for the race; can be modified later to match with time zones
 
         try(
                 BufferedReader reader =
@@ -55,6 +59,7 @@ public class CarSimulationApp {
 
             System.out.println(map);
 
+            //when file is empty
             if(map.size() == 0){
                 System.out.println("Empty file. Please provide a file with input!!");
                 System.exit(0);
@@ -68,8 +73,10 @@ public class CarSimulationApp {
                 }
             }
 
+            //list of lap times of the winner
             List<LocalTime> localTimesList = map.get(winner);
 
+            //lap duration
             long duration = startTime.until(localTimesList.get(0), SECONDS);
             int lapNumber = 1;
 
@@ -86,12 +93,9 @@ public class CarSimulationApp {
                 }
             }
 
-            if(winner == 0){
-                System.out.println("Empty list. No race happened");
-            }else{
-                System.out.println("Winner is kart number " + winner + ". The fastest lap number is " +
-                        lapNumber + " starting at " + startTime + " with a lap duration of " + duration + " seconds.");
-            }
+            System.out.println("Winner is kart number " + winner + ". The fastest lap number is " +
+                                lapNumber + " starting at " + startTime + " with a lap duration of " +
+                                duration + " seconds.");
 
 
         }catch (IOException e) {

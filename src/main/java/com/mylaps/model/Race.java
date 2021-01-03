@@ -2,12 +2,17 @@ package com.mylaps.model;
 
 import java.time.LocalTime;
 
+/**
+ * Model class of Race
+ * @author rameswaree@gmail.com
+ */
 public class Race {
 
     private int kartNo;
     private LocalTime passingTime;
 
     public Race() {
+        //no-args constructor
     }
 
     public Race(int kartNo, LocalTime passingTime) {
