@@ -78,7 +78,7 @@ public class CarSimulationApp {
 
             //lap duration
             long duration = startTime.until(localTimesList.get(0), SECONDS);
-            int lapNumber = 1;
+            int lapNumber = 0;
 
             for (int i = 0; i < localTimesList.size() - 1; i++) {
                 if (localTimesList.get(i).until(localTimesList.get(i + 1), SECONDS) < duration) {
@@ -87,7 +87,7 @@ public class CarSimulationApp {
                     startTime = localTimesList.get(i);
 
                     if (duration < 0) {
-                        System.out.println("Duration of lap number " + lapNumber + " is negative. Please check input!");
+                        System.out.println("Duration of lap number " + (lapNumber + 1) + " is negative. Please check input!");
                         System.exit(0);
                     }
                 }
