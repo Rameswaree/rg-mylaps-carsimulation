@@ -40,7 +40,7 @@ public class CarSimulationApp {
             raceStream = lines.map(line -> {
                 String[] s = line.split(",");
                 if ((!("").equalsIgnoreCase(s[0]) && !("").equalsIgnoreCase(s[1])) &&
-                        (!("kart").equalsIgnoreCase(s[0]) && !("passingtime").equalsIgnoreCase(s[1]))) {
+                        (!s[0].matches("^[a-zA-Z]*$") && !s[1].matches("^[a-zA-Z]*$"))) {
 
                     Race race = new Race(Integer.parseInt(s[0]), LocalTime.parse(s[1]));
 
@@ -93,7 +93,11 @@ public class CarSimulationApp {
                 }
             }
 
-            if(duration%60 == 0 && duration != 60){
+            if(duration == 60){
+                System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
+                        lapNumber + " starting at " + startTime + ". The duration of the lap is " +
+                        (duration/60) + " minute.");
+            }else if (duration%60 == 0){
                 System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
                         lapNumber + " starting at " + startTime + ". The duration of the lap is " +
                         (duration/60) + " minutes.");
@@ -105,10 +109,6 @@ public class CarSimulationApp {
                 System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
                         lapNumber + " starting at " + startTime + ". The duration of the lap is " +
                         (duration / 60) + " minute and " + (duration % 60) + " seconds.");
-            }else if (duration == 60){
-                System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
-                        lapNumber + " starting at " + startTime + ". The duration of the lap is " +
-                        (duration/60) + " minute.");
             }else{
                 System.out.println("Winner is kart number " + winner + ". The fastest lap is lap number " +
                         lapNumber + " starting at " + startTime + ". The duration of the lap is " +
